@@ -1,20 +1,44 @@
 * {
     font-family: 'Roboto', sans-serif;
-
+    background-color: rgb(255, 255, 255);
 }
-table, th, td {
-    border:1px solid black;
+
+table,
+th,
+td {
+    border: 1px solid black;
     border-collapse: collapse;
     padding: 10px;
-  }
-th{
-    background-color: aqua;
-  
+    text-align: center;
 }
+
+th,
+.total {
+    background-color: #B8BAB9;
+}
+
 .color {
-    background-color: aqua;
+    background-color: #D5D5D5;
+    font-weight: bolder;
 }
-th,td {
+
+th,
+td {
     padding-left: 38px;
     padding-right: 38px;
+}
+
+.flexTable {
+    display: flex;
+}
+
+.rightTable {
+    padding-left: 79px;
+    padding-right: 79px;
+}
+
+.tablePromedioFix {
+    padding: 3px;
+    padding-left: 157px;
+    padding-right: 157px;
 }
