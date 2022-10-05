@@ -1,0 +1,20 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+table,
+th,
+td {
+
+    border: 1px solid;
+    border-collapse: collapse;
+}
+td {
+    padding: 10px;
+}
+.colorVerde {
+    background-color: rgb(81, 184, 22);
+}
+.colorRojo {
+    background-color: rgb(255, 0, 0);
+}
