@@ -38,4 +38,26 @@ function existeUsuario($emailCliente, $passwordCliente)
     header('Location: index.php?type=1');
     die();
 }
+
+function cambiarPassword($passwordCliente)
+{
+    $conexion = conectarBaseDatos();
+    $consulta = "UPDATE `usuarios` SET `password`='$passwordCliente'WHERE email = 'javier.ruiz@medac.es'";
+    #Seleccion tabla
+    mysqli_select_db($conexion, "medac");
+    #Ejecutamos la sentencia
+    $datos = mysqli_query($conexion, $consulta);
+    if (!empty($row = mysqli_fetch_array($datos))) {
+        $_SESSION["emailCliente"] = $emailCliente;
+        $_SESSION["nombreCliente"] = $row["nombre"];
+        header('Location: dashboard.php');
+        die();
+    } else if (empty(mysqli_fetch_array($datos))) {
+        header('Location: index.php?type=1');
+        die();
+    }
+    header('Location: index.php?type=1');
+    die();
+}
+
 existeUsuario($emailCliente, $emailPassword);

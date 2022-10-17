@@ -1,12 +1,17 @@
 <?php
+include './timeout.php';
 session_start();
 if (!empty($_SESSION["emailCliente"])) {
-    echo "Estas registrado con email: " . $_SESSION["emailCliente"]. "<br>". "Nombre: ".$_SESSION["nombreCliente"];
+    echo "Estas registrado con email: " . $_SESSION["emailCliente"] . "<br>" . "Nombre: " . $_SESSION["nombreCliente"];
     echo "<br>";
     echo "<a href='./dashboard.php'>Ir dashboard 1</a>";
     echo "<br>";
     echo "<a href='logout.php'><button>Logout</button></a>";
-
+    if (isset($_COOKIE['color'])) {
+        $color = $_COOKIE['color'];
+        echo "<body style='background-color:$color'>";
+    }
+    actividadUsuario(60);
 } else {
     header('Location: index.php?type=2');
     die();
@@ -24,7 +29,12 @@ if (!empty($_SESSION["emailCliente"])) {
 </head>
 
 <body>
-   
+    <br><br>
+    <form action="./change_password.php" method="post">
+        <label for="lname">Cambiar contraseña:</label><br>
+        <input type="password" id="upassword" name="passwordUser"><br><br>
+        <input type="submit" value="Cambiar">
+    </form>
 </body>
 
 </html>

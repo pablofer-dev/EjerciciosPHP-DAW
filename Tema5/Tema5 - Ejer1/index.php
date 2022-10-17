@@ -9,6 +9,9 @@ if (isset($_GET["type"]) && $_GET["type"] == 2) {
 if (isset($_GET["type"]) && $_GET["type"] == 3) {
     echo "Ha cerrado sesión correctamente.";
 }
+if (isset($_GET["type"]) && $_GET["type"] == "exp") {
+    echo "Sesión expirada";
+}
 if (!empty($_SESSION)) {
     header('Location: dashboard.php');
     die();
