@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'login.php';
-if (!empty($_SESSION["emailCliente"])) {
+if (!empty($_SESSION["emailCliente"]) && ($_POST["passwordUser"]) != "") {
     header('Location: dashboard2.php?confirm=' . cambiarPassword($_POST["passwordUser"], $_SESSION["emailCliente"]));
     die();
     actividadUsuario(60);
