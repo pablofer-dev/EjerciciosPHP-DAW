@@ -11,6 +11,7 @@ function conectarBaseDatos()
         die('Conexión fallida: ' . mysqli_connect_error());
     } else {
         $conexionconfirm = "CONEXIÓN REALIZADA CON EXITO" . "<br>";
+        return $conexionconfirm;
     }
     return $conexion;
 }
