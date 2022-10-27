@@ -12,6 +12,9 @@ if (isset($_GET["type"]) && $_GET["type"] == 3) {
 if (isset($_GET["type"]) && $_GET["type"] == "exp") {
     echo "Sesión expirada";
 }
+if (isset($_GET["type"]) && $_GET["type"] == 6) {
+    echo "La contraseña no puede estar vacia";
+}
 if (!empty($_SESSION["emailCliente"])) {
     header('Location: dashboard.php');
     die();
