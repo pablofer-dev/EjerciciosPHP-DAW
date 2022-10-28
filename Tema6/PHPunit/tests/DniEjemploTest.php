@@ -23,13 +23,12 @@ class DniEjemploTest extends TestCase
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('DNI contiene letras en medio');
-        $dni = new DniEjemplo('4950U7191');
+        $dni = new DniEjemplo('6495X7199');
     }
-    public function testDniAcabaConLetraNoPermitida()
+    public function testAcabaConLetraIncorrecta()
     {
         $this->expectException(Exception::class);
-        $this->expectExceptionMessage('DNI acaba con una letra no permitida');
+        $this->expectExceptionMessage('Acaba con una letra incorrecta');
         $dni = new DniEjemplo('49507191U');
     }
-    
 }
