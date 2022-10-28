@@ -20,25 +20,25 @@ class DniEjemplo
     {
         /* Comprobando que la longitud de la cadena es inferior a 9 caracteres. */
         if (strlen($dni) > 9) {
-            throw new LengthException('Debe introducir 9 carácteres, no más');
+            throw new LengthException('El valor del DNI no puede ser mayor a 9.');
             /* Comprobando que la longitud de la cadena es inferior a 9 caracteres. */
         } elseif (strlen($dni) < 9) {
-            throw new LengthException('Debe introducir 9 carácteres, no menos');
+            throw new LengthException('El valor del DNI no puede ser menor a 9.');
             /* Comprobando que el DNI termina en letra. */
         } elseif (preg_match('/\d$/', $dni)) {
-            throw new DomainException('El DNI debe terminar por una letra');
+            throw new DomainException('El DNI tiene que terminar por una letra');
             /* Comprobando que el DNI no termina en las letras I, O, U o Ñ. */
         } elseif (preg_match('/[UIOÑ]$/u', $dni)) {
-            throw new DomainException('El DNI no debe terminar por la letra [I, O, U, Ñ]');
+            throw new DomainException('El DNI no puede acabar por I, O, U, Ñ');
             /* Comprobando que el DNI no contiene letras intermedias. */
         } elseif (!preg_match('/\d{7,7}.$/', $dni)) {
-            throw new DomainException('Un DNI no puede tener letras intermedias');
+            throw new DomainException('El DNI no puede tener letras itermedias');
             /* Comprobando que el DNI no empieza por una letra diferente a XYZ. */
         } elseif (!preg_match('/^[XYZ0-9]/', $dni)) {
-            throw new DomainException('En caso de un NIF debe iniciar por las letras XYZ');
+            throw new DomainException('El NIE no puede empezar pro X ,Y, Z');
             /* Comprobando si el DNI es válido. */
         } elseif (!($this->comprobarLetraDni($dni))) {
-            throw new InvalidArgumentException('La letra del dni introducido no es correcta');
+            throw new InvalidArgumentException('ERROR: La letra del DNI es incorrecta!');
         }
     }
 
