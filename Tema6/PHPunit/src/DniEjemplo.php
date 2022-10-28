@@ -24,10 +24,7 @@ class DniEjemplo
             /* Comprobando que la longitud de la cadena es inferior a 9 caracteres. */
         } elseif (strlen($dni) < 9) {
             throw new LengthException('El valor del DNI no puede ser menor a 9.');
-            /* Comprobando que el DNI termina en letra. */
-        } elseif (preg_match('/\d$/', $dni)) {
-            throw new DomainException('El DNI tiene que terminar por una letra');
-            /* Comprobando que el DNI no termina en las letras I, O, U o Ñ. */
+            /* Comprobando si el DNI termina en I, O, U o Ñ. */
         } elseif (preg_match('/[UIOÑ]$/u', $dni)) {
             throw new DomainException('El DNI no puede acabar por I, O, U, Ñ');
             /* Comprobando que el DNI no contiene letras intermedias. */
@@ -35,7 +32,7 @@ class DniEjemplo
             throw new DomainException('El DNI no puede tener letras itermedias');
             /* Comprobando que el DNI no empieza por una letra diferente a XYZ. */
         } elseif (!preg_match('/^[XYZ0-9]/', $dni)) {
-            throw new DomainException('El NIE no puede empezar pro X ,Y, Z');
+            throw new DomainException('El NIE no puede empezar por X ,Y, Z');
             /* Comprobando si el DNI es válido. */
         } elseif (!($this->comprobarLetraDni($dni))) {
             throw new InvalidArgumentException('ERROR: La letra del DNI es incorrecta!');
@@ -49,12 +46,12 @@ class DniEjemplo
      * 
      * @return un valor booleano.
      */
-    public function comprobarLetraDni(string $dni)
+    public function comprobarLetraDni($dni)
     {
         /* Comprobando si el DNI es válido. */
-        $letter = substr($dni, -1);
-        $numbers = substr($dni, 0, -1);
-        if (substr("TRWAGMYFPDXBNJZSQVHLCKE", $numbers % 23, 1) == $letter && strlen($letter) == 1 && strlen($numbers) == 8) {
+        $l = substr($dni, -1);
+        $n = substr($dni, 0, -1);
+        if (substr("TRWAGMYFPDXBNJZSQVHLCKE", $n % 23, 1) == $l && strlen($l) == 1 && strlen($n) == 8) {
             return true;
         }
         return false;

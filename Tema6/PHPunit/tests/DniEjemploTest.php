@@ -2,8 +2,10 @@
 
 use PHPUnit\Framework\TestCase;
 
-final class DniTest extends TestCase
+final class DniEjemploTest extends TestCase
 {
+
+
     /**
      * Comprueba que la clase DNI lanza una excepción cuando el DNI tiene más de 9 caracteres
      */
@@ -11,7 +13,7 @@ final class DniTest extends TestCase
     {
         $this->expectException(LengthException::class);
         $this->expectExceptionMessage('El valor del DNI no puede ser mayor a 9.');
-        $dni = new DniEjemplo('0123456789');
+        $dni = new DniEjemplo('0000000000');
     }
 
     /**
@@ -21,47 +23,35 @@ final class DniTest extends TestCase
     {
         $this->expectException(LengthException::class);
         $this->expectExceptionMessage('El valor del DNI no puede ser menor a 9.');
-        $dni = new DniEjemplo('01234567');
+        $dni = new DniEjemplo('00000000');
+    }
+    /**
+     * Comprueba si el DNI termina en I, O, U, Ñ.
+     */
+    public function testDniAcabaConLetraNoPermitida(): void
+    {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('El DNI no puede acabar por I, O, U, Ñ');
+        $dni = new DniEjemplo('00000000O');
     }
     /**
      * Comprueba si el DNI tiene letras en medio.
      */
     public function testDniContieneLetrasEnMedio(): void
     {
-        $this->expectException(DomainException::class);
+        $this->expectException(Exception::class);
         $this->expectExceptionMessage('El DNI no puede tener letras itermedias');
-        $dni = new DniEjemplo('012AB567R');
+        $dni = new DniEjemplo('000A0000A');
     }
-    /**
-     * Comprueba si el DNI termina en letra.
-     */
-    public function testDniAcabaConLetra(): void
-    {
-        $this->expectException(DomainException::class);
-        $this->expectExceptionMessage('El DNI tiene que terminar por una letra');
-        $dni = new DniEjemplo('012345678');
-    }
-    
-    /**
-     * Comprueba si el DNI termina en I, O, U, Ñ.
-     */
-    public function testDniAcabaConLetraNoPermitida(): void
-    {
-        $this->expectException(DomainException::class);
-        $this->expectExceptionMessage('El DNI no puede acabar por I, O, U, Ñ');
-        $dni = new DniEjemplo('01234567I');
-    }
-
-
 
     /**
      * Comprueba si el DNI empieza por X, Y o Z.
      */
     public function testDniAcabaConLetraDiferenteXYZ(): void
     {
-        $this->expectException(DomainException::class);
-        $this->expectExceptionMessage('El NIE no puede empezar pro X ,Y, Z');
-        $dni = new DniEjemplo('A1234567R');
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('El NIE no puede empezar por X ,Y, Z');
+        $dni = new DniEjemplo('A0000000R');
     }
 
     /**
@@ -69,8 +59,16 @@ final class DniTest extends TestCase
      */
     public function testDniUltimaLetraCorrecta(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(Exception::class);
         $this->expectExceptionMessage('ERROR: La letra del DNI es incorrecta!');
-        $dni = new DniEjemplo('00000000S');
+        $dni = new DniEjemplo('00000000J');
+    }
+
+    public function testDniCorrecto()
+    {
+        $this->assertInstanceOf(
+            DniEjemplo::class,
+            new DniEjemplo('49507191J')
+        );
     }
 }
