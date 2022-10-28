@@ -40,30 +40,21 @@ class DniEjemplo
         $this->dni = $dni;
     }
 
+
     /**
-     * Valida un DNI (DNI español)
+     * Si el último carácter del DNI es igual al carácter 23 de la cadena "TRWAGMYFPDXBNJZSQVHLCKE"
+     * (que es la letra correspondiente al número del DNI), entonces el DNI es válido
      * 
-     * @param dni El DNI a validar.
-     * 
-     * @return un valor booleano.
+     * @param dni El número de DNI a validar.
      */
     public function comprobarLetraDni($dni)
     {
-        if (substr($dni, 0, 1) == "X" || substr($dni, 0, 1) == "Y" || substr($dni, 0, 1) == "Z") {
-            $keyword = array("0" => "X", "1" => "Y", "2" => "Z");
-            if ($keyword["0"] == (substr($dni, 0, 1))) {
-                substr_replace("X", "0", $dni);
-                return true;
-            }
-            if ($keyword["1"] == (substr($dni, 0, 1))) {
-                substr_replace("Y", "0", $dni);
-                return true;
-            }
-            if ($keyword["2"] == (substr($dni, 0, 1))) {
-                substr_replace("Z", "0", $dni);
-                return true;
-            }
-            return false;
+        if ("Y" == (substr($dni, 0, 1))) {
+            $dni = str_replace("Y", "0", $dni);
+        } else if ("X" == (substr($dni, 0, 1))) {
+            $dni = str_replace("X", "0", $dni);
+        } else if ("Z" == (substr($dni, 0, 1))) {
+            $dni = str_replace("Z", "0", $dni);
         }
         $l = substr($dni, -1);
         $n = substr($dni, 0, -1);

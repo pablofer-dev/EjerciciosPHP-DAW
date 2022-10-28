@@ -2,7 +2,7 @@
 
 
 $dni = "X3274415C";
-str_replace("0", "X", $dni);
+$dni = str_replace("X", "0", $dni);
 echo $dni;
 
 ?>

@@ -2,9 +2,11 @@
 
 use PHPUnit\Framework\TestCase;
 
+/* Comprueba que la clase DniEjemplo se puede instanciar con un número de NIE válido */
+
 final class DniEjemploTest extends TestCase
 {
-    
+
 
     /**
      * Comprueba que la clase DNI lanza una excepción cuando el DNI tiene más de 9 caracteres
@@ -63,11 +65,22 @@ final class DniEjemploTest extends TestCase
         $this->expectExceptionMessage('ERROR: La letra del DNI es incorrecta!');
         $dni = new DniEjemplo('00000000J');
     }
-    public function testDni()
+
+    /**
+     * La clase DniEjemplo se puede instanciar con un número de NIE, DNI válido.
+     */
+    public function testNIE()
     {
+        /* Comprobando que la clase DniEjemplo se puede instanciar con un número de NIE válido. */
         $this->assertInstanceOf(
             DniEjemplo::class,
-            $dni = new DniEjemplo('X3274415C')
+            new DniEjemplo('X3274415C')
+
+        );
+        /* Comprobando que la clase DniEjemplo se puede instanciar con un número de DNI válido. */
+        $this->assertInstanceOf(
+            DniEjemplo::class,
+            new DniEjemplo('53533717K')
         );
     }
 }
