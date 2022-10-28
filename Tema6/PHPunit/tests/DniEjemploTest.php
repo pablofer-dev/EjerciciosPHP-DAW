@@ -68,7 +68,7 @@ final class DniEjemploTest extends TestCase
     {
         $this->assertInstanceOf(
             DniEjemplo::class,
-            new DniEjemplo('49507191J')
+            new DniEjemplo('Y8941548J')
         );
     }
 }
