@@ -19,22 +19,17 @@ class DniEjemploTest extends TestCase
         $this->expectExceptionMessage('DNI too short');
         $dni = new DniEjemplo('75895874');
     }
-    public function testDniAcabaConLetraNoPermitida()
-    {
-        $this->expectException(LengthException::class);
-        $this->expectExceptionMessage('DNI acaba con letra no permitida');
-        $dni = new DniEjemplo('49507191O');
-    }
     public function testContieneLetrasEnMedio()
     {
-        $this->expectException(LengthException::class);
-        $this->expectExceptionMessage('Contiene letras en medio');
-        $dni = new DniEjemplo('Q4950711B');
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('DNI contiene letras en medio');
+        $dni = new DniEjemplo('4950U7191');
     }
-    public function testDniEmpiezaConLetraDiferenteXYZ()
+    public function testDniAcabaConLetraNoPermitida()
     {
-        $this->expectException(LengthException::class);
-        $this->expectExceptionMessage('NIE letra no permitida');
-        $dni = new DniEjemplo('Q4950711B');
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('DNI acaba con una letra no permitida');
+        $dni = new DniEjemplo('49507191U');
     }
+    
 }

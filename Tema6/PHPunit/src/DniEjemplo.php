@@ -2,38 +2,26 @@
 
 class DniEjemplo
 {
-    private $dni;
-    public function ultimaLetraDeString($dni)
-    {
-        $formato = preg_match('/[0-9]{7,8}[TRWAGMYFPDXBNJZSQVHLCKE]/', $dni);
-        if ($formato == 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function primeraLetraNIE($dni)
-    {
-        $formato = preg_match('/[XYZ]{7}[0-9]{1}[A-Z]/', $dni);
-        if ($formato == 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
+    private $dni;
     public function __construct(string $dni)
     {
         if (strlen($dni) > 9) {
             throw new LengthException('DNI too long');
         } else if (strlen($dni) < 9) {
             throw new LengthException('DNI too short');
-        } elseif ($this->ultimaLetraDeString($dni) != 1) {
-            throw new LengthException('DNI acaba con letra no permitida');
-        } elseif ($this->primeraLetraNIE($dni) != 1) {
-            throw new LengthException('NIE letra no permitida');
+        } else if ($this->comprobarDni($dni) != true) {
+            throw new LengthException('DNI contiene letras en medio');
+        } else if ($this->comprobarDni($dni) != true) {
+            throw new LengthException('DNI acaba con una letra no permitida');
+        }
+    }
+    public function comprobarDni($dni)
+    {
+        if (preg_match("/[0-9]{8}[A-Z]{1}/", $dni) == 1 || preg_match("/[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]{1}/", $dni) == 1) {
+            return true;
         } else {
-            $this->dni = $dni;
+            return 0;
         }
     }
 }
