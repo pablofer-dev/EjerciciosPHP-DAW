@@ -1,12 +1,7 @@
-<?php
-
-declare(strict_types=1);
-
+<?php declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
-
 class DniEjemploTest extends TestCase
 {
-
     //Controlo que el DNI tenga nueve dígitos
     public function testDniLongitudMayor()
     {
