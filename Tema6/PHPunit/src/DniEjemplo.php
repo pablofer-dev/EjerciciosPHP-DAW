@@ -37,6 +37,7 @@ class DniEjemplo
         } elseif (!($this->comprobarLetraDni($dni))) {
             throw new InvalidArgumentException('ERROR: La letra del DNI es incorrecta!');
         }
+        $this->dni = $dni;
     }
 
     /**
@@ -48,7 +49,22 @@ class DniEjemplo
      */
     public function comprobarLetraDni($dni)
     {
-        /* Comprobando si el DNI es válido. */
+        if (substr($dni, 0, 1) == "X" || substr($dni, 0, 1) == "Y" || substr($dni, 0, 1) == "Z") {
+            $keyword = array("0" => "X", "1" => "Y", "2" => "Z");
+            if ($keyword["0"] == (substr($dni, 0, 1))) {
+                substr_replace("X", "0", $dni);
+                return true;
+            }
+            if ($keyword["1"] == (substr($dni, 0, 1))) {
+                substr_replace("Y", "0", $dni);
+                return true;
+            }
+            if ($keyword["2"] == (substr($dni, 0, 1))) {
+                substr_replace("Z", "0", $dni);
+                return true;
+            }
+            return false;
+        }
         $l = substr($dni, -1);
         $n = substr($dni, 0, -1);
         if (substr("TRWAGMYFPDXBNJZSQVHLCKE", $n % 23, 1) == $l && strlen($l) == 1 && strlen($n) == 8) {

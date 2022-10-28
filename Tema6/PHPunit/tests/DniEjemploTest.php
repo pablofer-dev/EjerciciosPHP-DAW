@@ -4,7 +4,7 @@ use PHPUnit\Framework\TestCase;
 
 final class DniEjemploTest extends TestCase
 {
-
+    
 
     /**
      * Comprueba que la clase DNI lanza una excepción cuando el DNI tiene más de 9 caracteres
@@ -63,12 +63,11 @@ final class DniEjemploTest extends TestCase
         $this->expectExceptionMessage('ERROR: La letra del DNI es incorrecta!');
         $dni = new DniEjemplo('00000000J');
     }
-
-    public function testDniCorrecto()
+    public function testDni()
     {
         $this->assertInstanceOf(
             DniEjemplo::class,
-            new DniEjemplo('Y8941548J')
+            $dni = new DniEjemplo('X3274415C')
         );
     }
 }
