@@ -74,7 +74,7 @@ final class DniEjemploTest extends TestCase
         /* Comprobando que la clase DniEjemplo se puede instanciar con un número de NIE válido. */
         $this->assertInstanceOf(
             DniEjemplo::class,
-            new DniEjemplo('X3274415C')
+            new DniEjemplo('Z6705072W')
 
         );
         /* Comprobando que la clase DniEjemplo se puede instanciar con un número de DNI válido. */

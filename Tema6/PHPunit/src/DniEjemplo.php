@@ -50,11 +50,11 @@ class DniEjemplo
     public function comprobarLetraDni($dni)
     {
         if ("Y" == (substr($dni, 0, 1))) {
-            $dni = str_replace("Y", "0", $dni);
+            $dni = str_replace("Y", "1", $dni);
         } else if ("X" == (substr($dni, 0, 1))) {
             $dni = str_replace("X", "0", $dni);
         } else if ("Z" == (substr($dni, 0, 1))) {
-            $dni = str_replace("Z", "0", $dni);
+            $dni = str_replace("Z", "2", $dni);
         }
         $l = substr($dni, -1);
         $n = substr($dni, 0, -1);
