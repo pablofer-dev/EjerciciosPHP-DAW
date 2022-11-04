@@ -1,4 +1,7 @@
 {
     "docwriter.language": "Spanish",
-    "docwriter.style": "Doxygen"
+    "docwriter.style": "Doxygen",
+    "cSpell.words": [
+        "correo"
+    ]
 }
